@@ -4,10 +4,16 @@
 .heading {
     font-family: Arial;
     margin-top:40vh;
+    display: flex;
+    justify-content: space-around;
 }
 .URL-input, .convert-button {
     font-size:1.3em;
     padding:5px 10px;
+}
+.btn {
+    font-size: 1.3em;
+
 }
 .URL-input {
     border-radius:4px 0px 0px 4px;
