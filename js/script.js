@@ -10,5 +10,5 @@ resolveBtn.addEventListener('click', () => {
     document.getElementById('link').innerHTML = `${window.location.protocol}://${window.location.hostname}/video?URL=${URLinput.value}`;
 });
 function sendURL(URL) {
-    window.location.href = `http://localhost:3000/video?URL=${URL}`;
+    window.location.href = `${window.location.protocol}://${window.location.hostname}/video?URL=${URL}`;
 }
