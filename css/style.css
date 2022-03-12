@@ -1,5 +1,6 @@
 body {
     text-align: center;
+    margin-inline: 50px;
 }
 input {
     width: 10%;

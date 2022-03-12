@@ -16,8 +16,6 @@
 	<body>
 		<div class="container-fluid my-5">
 			<h1><strong>VRChat Quest Link Resolver</strong></h1>
-			<form class="my-5">
-				<div class="form-group">
 					<label for="videoURL"
 						>Video Link from Youtube</label
 					>
@@ -29,9 +27,22 @@
                         id="videoURL"
 					/>
 				</div>
-				<button id="submit" type="submit" class="btn btn-primary">Generate</button>
-			</form>
+				<button style="margin-left: 50px;" id="submit" type="submit" class="btn btn-primary">Generate</button>
             <p id="link"></p>
+			<h1><strong>VRChat Quest Link Resolver (Xvideo NSFW)</strong></h1>
+					<label for="videoURL"
+						>Video Link From Xvideo</label
+					>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Enter Video URL"
+                        name="url"
+                        id="videoURLx"
+					/>
+				</div>
+				<button style="margin-left: 50px;" id="submitx" type="submit" class="btn btn-primary">Generate</button>
+            <p id="link-x"></p>
 		</div>
         <script src="js/script.js"></script>
 	</body>

@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
 const ytdl = require("ytdl-core");
+const xvideos = require('@rodrigogs/xvideos');
 const yts = require("yt-search");
 app.set("view engine", "ejs");
 app.use(express.static('public'))
+
 // OUR ROUTES WILL GO HERE
 app.get("/", async (req, res) => {
 	return res.render("index");
@@ -14,7 +16,16 @@ app.get("/search", async (req, res) => {
     const h = r.videos.slice(0,1).map( v => v.url)
     res.redirect('/download?url=' + h[0]);
 })
-app.get("/download", async (req, res) => {
+
+app.get('/xvideo', async (req, res) => {
+    const url = req.query.url;
+    const details = await xvideos.videos.details({url: url});
+    const video = details.files.high;
+    console.log(video);
+    res.redirect(video);
+})
+
+app.get("/yt", async (req, res) => {
 	const v_id = req.query.url.split('v=')[1];
     const info = await ytdl.getInfo(req.query.url);
     const formatYT = info.formats.sort((a, b) => {
