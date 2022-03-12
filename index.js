@@ -6,8 +6,6 @@ app.set("view engine", "ejs");
 app.use(express.static('public'))
 // OUR ROUTES WILL GO HERE
 app.get("/", async (req, res) => {
-    const r = await yts( 'superman theme' )
-    const h = r.videos.slice(0,1).map( v => v.url)
 	return res.render("index");
 });
 
@@ -37,6 +35,6 @@ app.get("/download", async (req, res) => {
     
 });
 
-app.listen(3000, () => {
+app.listen(80, () => {
 	console.log("Server is running on http://localhost:3000");
 });
