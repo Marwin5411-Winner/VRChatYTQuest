@@ -11,5 +11,5 @@ resolveBtn.addEventListener('click', () => {
 
 resolveBtnx.addEventListener('click', () => {
     console.log(`URL: ${URLinputx.value}`);
-    document.getElementById('link-x').innerHTML = `${window.location.protocol}//${window.location.hostname}/xvideo?url=${URLinputx.value}`;
+    document.getElementById('link-x').innerHTML = `${window.location.protocol}//${window.location.hostname}/nsfwx?url=${URLinputx.value}`;
 });

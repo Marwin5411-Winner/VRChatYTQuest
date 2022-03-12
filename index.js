@@ -3,6 +3,7 @@ const app = express();
 const ytdl = require("ytdl-core");
 const xvideos = require('@rodrigogs/xvideos');
 const yts = require("yt-search");
+
 app.set("view engine", "ejs");
 app.use(express.static('public'))
 
@@ -17,7 +18,7 @@ app.get("/search", async (req, res) => {
     res.redirect('/download?url=' + h[0]);
 })
 
-app.get('/xvideo', async (req, res) => {
+app.get('/nsfwx', async (req, res) => {
     const url = req.query.url;
     const details = await xvideos.videos.details({url: url});
     const video = details.files.high;
