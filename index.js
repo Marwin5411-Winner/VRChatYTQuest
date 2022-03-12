@@ -1,30 +1,42 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
 const ytdl = require("ytdl-core");
-const res = require("express/lib/response");
+const yts = require("yt-search");
+app.set("view engine", "ejs");
+app.use(express.static('public'))
 // OUR ROUTES WILL GO HERE
-
-app.use(cors());
-
-app.get('/video', (req,res) => {
-    var URL = req.query.URL;
-    //response header to stream mp4
-    res.setHeader('Content-Type', 'video/mp4');
-    //set response header cors to stream mp4
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    //set response header to stream mp4
-    //res.setHeader('Content-Disposition', 'attachment; filename="' + ytdl.getBasicInfo(URL).title + '.mp4"');
-    //res.header('Content-Disposition', `attachment; filename="${ytname}.mp4"`);
-    //setup ytdl to download the video stream to the response object (res) and set to 1080p video quality
-    ytdl(URL, {
-        filter: 'audioandvideo',
-        quality: 'highestvideo',
-        format: 'mp4'
-    }).pipe(res);
+app.get("/", async (req, res) => {
+    const r = await yts( 'superman theme' )
+    const h = r.videos.slice(0,1).map( v => v.url)
+	return res.render("index");
 });
 
+app.get("/search", async (req, res) => { 
+    const r = await yts( req.query.q )
+    const h = r.videos.slice(0,1).map( v => v.url)
+    res.redirect('/download?url=' + h[0]);
+})
+app.get("/download", async (req, res) => {
+	const v_id = req.query.url.split('v=')[1];
+    const info = await ytdl.getInfo(req.query.url);
+    const formatYT = info.formats.sort((a, b) => {
+        return a.width > b.width;
+    })
+    const checkAudio = formatYT.filter(f => f.hasAudio == true);
+    const checkVideo = checkAudio.filter(f => f.hasVideo == true);
 
-app.listen(80, () => {
-    console.log("Server is running on http://localhost:80");
+    const format = checkVideo.filter(f => f.container == 'mp4');
+    console.log(format)
+    res.redirect(format[format.length - 1].url);
+    /*return res.render("download", {
+		url: "https://www.youtube.com/embed/" + v_id,
+        info: info.formats.sort((a, b) => {
+            return a.mimeType < b.mimeType;
+        })
+	});*/
+    
+});
+
+app.listen(3000, () => {
+	console.log("Server is running on http://localhost:3000");
 });
