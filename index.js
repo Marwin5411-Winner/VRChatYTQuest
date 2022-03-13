@@ -47,6 +47,10 @@ app.get("/yt", async (req, res) => {
     
 });
 
-app.listen(80, () => {
+app.listen(8080, () => {
 	console.log("Server is running on http://localhost:80");
+});
+
+app.listen(8443, () => {
+    console.log("Server is running on https://localhost:8443");
 });
