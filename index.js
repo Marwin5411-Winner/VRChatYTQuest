@@ -18,14 +18,6 @@ app.get("/search", async (req, res) => {
     res.redirect('/download?url=' + h[0]);
 })
 
-app.get('/nsfwx', async (req, res) => {
-    const url = req.query.url;
-    const details = await xvideos.videos.details({url: url});
-    const video = details.files.high;
-    console.log(video);
-    res.redirect(video);
-})
-
 app.get("/yt", async (req, res) => {
 	const v_id = req.query.url.split('v=')[1];
     const info = await ytdl.getInfo(req.query.url);
@@ -49,8 +41,4 @@ app.get("/yt", async (req, res) => {
 
 app.listen(8080, () => {
 	console.log("Server is running on http://localhost:80");
-});
-
-app.listen(8443, () => {
-    console.log("Server is running on https://localhost:8443");
 });
