@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const ytdl = require("ytdl-core");
-const xvideos = require('@rodrigogs/xvideos');
 const yts = require("yt-search");
 
 app.set("view engine", "ejs");
